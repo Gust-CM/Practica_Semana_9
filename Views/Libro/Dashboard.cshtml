@@ -1,0 +1,100 @@
+﻿@using System.Linq
+@model PracticaSemana9.ViewModels.DashboardLibroViewModel
+
+@{
+    Layout = "~/Views/Shared/Layouts/_LayoutLibros.cshtml";
+}
+
+<div class="row g-4">
+
+    <!-- Total libros -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h5 class="text-muted">Total de Libros</h5>
+                <h2 class="fw-bold text-primary">@Model.Total</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disponibles -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h5 class="text-muted">Disponibles</h5>
+                <h2 class="fw-bold text-success">@Model.Disponibles</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- No disponibles -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h5 class="text-muted">No disponibles</h5>
+                <h2 class="fw-bold text-danger">@Model.NoDisponibles</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr class="my-4" />
+
+<div class="row">
+
+    <!-- Por categoría -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-tags"></i> Libros por categoría
+                </h5>
+
+                @if (!Model.PorCategoria.Any())
+                {
+                    <p class="text-muted">Aún no hay libros registrados.</p>
+                }
+                else
+                {
+                    @foreach (var item in Model.PorCategoria)
+                    {
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span>@item.Categoria</span>
+                            <span class="fw-bold">@item.Cantidad</span>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Últimos libros -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-clock-history"></i> Últimos 5 libros registrados
+                </h5>
+
+                @if (!Model.Ultimos.Any())
+                {
+                    <p class="text-muted">Aún no hay libros registrados.</p>
+                }
+                else
+                {
+                    <ul class="list-group">
+                        @foreach (var libro in Model.Ultimos)
+                        {
+                            <li class="list-group-item d-flex justify-content-between">
+                                <strong>@libro.Titulo</strong>
+                                <span class="text-muted">@libro.CodigoInterno</span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

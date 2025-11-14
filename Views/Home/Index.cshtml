@@ -1,8 +1,62 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Práctica Semana 9";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center my-5">
+    <h1 class="fw-bold display-5 mb-3">Práctica Semana 9</h1>
+    <p class="lead">
+        Dos módulos independientes con un diseño profesional: <strong>Biblioteca Campus</strong> y <strong>TechWorkshops</strong>.
+    </p>
+</div>
+
+<div class="row g-4">
+
+    <!-- Tarjeta Libros -->
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0 h-100">
+            <div class="card-body p-4">
+
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rounded-4 bg-primary text-white d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
+                        <i class="bi bi-book fs-3"></i>
+                    </div>
+                    <h4 class="ms-3 fw-bold">Biblioteca Campus</h4>
+                </div>
+
+                <p class="text-muted">
+                    Administra libros con validaciones avanzadas. Perfecto para gestionar un catálogo escolar o académico.
+                </p>
+
+                <a asp-controller="Libro" asp-action="Index" class="btn btn-primary mt-2">
+                    <i class="bi bi-arrow-right-circle"></i> Entrar
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta Inscripciones -->
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0 h-100">
+            <div class="card-body p-4">
+
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rounded-4 bg-success text-white d-flex justify-content-center align-items-center" style="width:60px; height:60px;">
+                        <i class="bi bi-people fs-3"></i>
+                    </div>
+                    <h4 class="ms-3 fw-bold">TechWorkshops</h4>
+                </div>
+
+                <p class="text-muted">
+                    Registra participantes con validaciones modernas y seguras. Especial para talleres y cursos.
+                </p>
+
+                <a asp-controller="Inscripcion" asp-action="Index" class="btn btn-success mt-2">
+                    <i class="bi bi-arrow-right-circle"></i> Entrar
+                </a>
+
+            </div>
+        </div>
+    </div>
+
 </div>

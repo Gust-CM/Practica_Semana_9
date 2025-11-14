@@ -1,6 +1,54 @@
-﻿namespace PracticaSemana9.Views.Libro
-{
-    public class Index
-    {
-    }
+﻿@model IReadOnlyList<PracticaSemana9.Models.Libro>
+@{
+    Layout = "~/Views/Shared/Layouts/_LayoutLibros.cshtml";
+    ViewData["Title"] = "Catálogo de Libros";
 }
+
+<div class="section-header">
+    <i class="bi bi-journal-text"></i> Catálogo de Libros
+</div>
+
+<div class="mb-3">
+    <a asp-action="Crear" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Nuevo Libro
+    </a>
+</div>
+
+<div class="card-custom">
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Categoría</th>
+                <th>Año</th>
+                <th>Páginas</th>
+                <th>Código</th>
+                <th>Disponible</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var l in Model)
+                {
+                    <tr>
+                        <td>@l.Titulo</td>
+                        <td>@l.Autor</td>
+                        <td>@l.Categoria</td>
+                        <td>@l.AnioPublicacion</td>
+                        <td>@l.NumeroPaginas</td>
+                        <td>@l.CodigoInterno</td>
+                        <td>@(l.Disponible == true ? "Sí" : "No")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="7" class="text-center text-muted">Sin registros</td></tr>
+            }
+        </tbody>
+    </table>
+
+</div>

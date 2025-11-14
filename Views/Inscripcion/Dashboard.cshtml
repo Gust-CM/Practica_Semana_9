@@ -1,0 +1,134 @@
+﻿@using System.Linq
+@model PracticaSemana9.ViewModels.DashboardInscripcionViewModel
+
+@{
+    Layout = "~/Views/Shared/Layouts/_LayoutInscripciones.cshtml";
+}
+
+<div class="row g-4">
+
+    <!-- Total inscritos -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h5 class="text-muted">Total Inscripciones</h5>
+                <h2 class="fw-bold text-success">@Model.Total</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taller más solicitado -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h5 class="text-muted">Taller más solicitado</h5>
+
+                @{
+                    var topTaller = Model.PorTaller
+                    .OrderByDescending(x => x.Cantidad)
+                    .FirstOrDefault();
+                }
+
+                @if (topTaller is not null)
+                {
+                    <h4 class="fw-bold">@topTaller.Taller</h4>
+                    <span class="text-muted">@topTaller.Cantidad inscripciones</span>
+                }
+                else
+                {
+                    <p class="text-muted">Aún no hay datos.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Nivel más común -->
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h5 class="text-muted">Nivel más frecuente</h5>
+
+                @{
+                    var topNivel = Model.PorNivel
+                    .OrderByDescending(x => x.Cantidad)
+                    .FirstOrDefault();
+                }
+
+                @if (topNivel is not null)
+                {
+                    <h4 class="fw-bold">@topNivel.Nivel</h4>
+                    <span class="text-muted">@topNivel.Cantidad personas</span>
+                }
+                else
+                {
+                    <p class="text-muted">Aún no hay datos.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr class="my-4" />
+
+<div class="row">
+
+    <!-- Próximos talleres -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-calendar-event"></i> Próximos Talleres
+                </h5>
+
+                @if (!Model.Proximos.Any())
+                {
+                    <p class="text-muted">No hay talleres registrados a futuro.</p>
+                }
+                else
+                {
+                    <ul class="list-group">
+                        @foreach (var item in Model.Proximos)
+                        {
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>@item.Nombre @item.Apellidos</span>
+                                <span class="text-muted">
+                                    @item.FechaTaller?.ToString("yyyy-MM-dd")
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Últimos inscritos -->
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 h-100">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-clock-history"></i> Últimos inscritos
+                </h5>
+
+                @if (!Model.Recientes.Any())
+                {
+                    <p class="text-muted">Aún no hay inscripciones.</p>
+                }
+                else
+                {
+                    <ul class="list-group">
+                        @foreach (var item in Model.Recientes)
+                        {
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span><strong>@item.Nombre</strong> @item.Apellidos</span>
+                                <span class="text-muted">@item.Correo</span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

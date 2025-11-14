@@ -1,6 +1,83 @@
-﻿namespace PracticaSemana9.Views.Libro
-{
-    public class Crear
-    {
-    }
+﻿@model PracticaSemana9.Models.Libro
+@{
+    Layout = "~/Views/Shared/Layouts/_LayoutLibros.cshtml";
+    ViewData["Title"] = "Registrar Libro";
+}
+
+<div class="section-header">
+    <i class="bi bi-journal-plus"></i> Registrar Nuevo Libro
+</div>
+
+<div class="card-custom">
+
+    <form asp-action="Crear" method="post" novalidate>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <label asp-for="Titulo" class="form-label fw-semibold"></label>
+                <input asp-for="Titulo" class="form-control form-control-lg" />
+                <span asp-validation-for="Titulo" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Autor" class="form-label fw-semibold"></label>
+                <input asp-for="Autor" class="form-control form-control-lg" />
+                <span asp-validation-for="Autor" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="Categoria" class="form-label fw-semibold"></label>
+                <select asp-for="Categoria" class="form-select form-select-lg"
+                        asp-items="Html.GetEnumSelectList<CategoriaLibro>()">
+                    <option value="">Seleccione una categoría…</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="AnioPublicacion" class="form-label fw-semibold"></label>
+                <input asp-for="AnioPublicacion" class="form-control form-control-lg" />
+                <span asp-validation-for="AnioPublicacion" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="NumeroPaginas" class="form-label fw-semibold"></label>
+                <input asp-for="NumeroPaginas" class="form-control form-control-lg" />
+                <span asp-validation-for="NumeroPaginas" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="CodigoInterno" class="form-label fw-semibold"></label>
+                <input asp-for="CodigoInterno" placeholder="LIB-001"
+                       class="form-control form-control-lg" />
+                <span asp-validation-for="CodigoInterno" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6 d-flex align-items-center mt-4">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Disponible" />
+                    <label class="form-check-label fw-semibold" asp-for="Disponible"></label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-4 d-flex gap-3">
+            <button class="btn btn-primary btn-lg px-4">
+                <i class="bi bi-check-circle"></i> Guardar
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-arrow-left"></i> Cancelar
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -1,6 +1,91 @@
-﻿namespace PracticaSemana9.Views.Inscripcion
-{
-    public class Crear
-    {
-    }
+﻿@model PracticaSemana9.Models.Inscripcion
+@{
+    Layout = "~/Views/Shared/Layouts/_LayoutInscripciones.cshtml";
+    ViewData["Title"] = "Nueva Inscripción";
+}
+
+<div class="section-header">
+    <i class="bi bi-person-plus"></i> Nueva Inscripción
+</div>
+
+<div class="card-custom">
+
+    <form asp-action="Crear" method="post" novalidate>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <label asp-for="Nombre" class="form-label fw-semibold"></label>
+                <input asp-for="Nombre" class="form-control form-control-lg" />
+                <span asp-validation-for="Nombre" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Apellidos" class="form-label fw-semibold"></label>
+                <input asp-for="Apellidos" class="form-control form-control-lg" />
+                <span asp-validation-for="Apellidos" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Correo" class="form-label fw-semibold"></label>
+                <input asp-for="Correo" class="form-control form-control-lg" />
+                <span asp-validation-for="Correo" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Telefono" class="form-label fw-semibold"></label>
+                <input asp-for="Telefono" class="form-control form-control-lg" />
+                <span asp-validation-for="Telefono" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Taller" class="form-label fw-semibold"></label>
+                <select asp-for="Taller" class="form-select form-select-lg"
+                        asp-items="Html.GetEnumSelectList<Taller>()">
+                    <option value="">Seleccione un taller…</option>
+                </select>
+                <span asp-validation-for="Taller" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="NivelExperiencia" class="form-label fw-semibold"></label>
+                <select asp-for="NivelExperiencia" class="form-select form-select-lg"
+                        asp-items="Html.GetEnumSelectList<Nivel>()">
+                </select>
+                <span asp-validation-for="NivelExperiencia" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="FechaTaller" class="form-label fw-semibold"></label>
+                <input asp-for="FechaTaller" class="form-control form-control-lg" />
+                <span asp-validation-for="FechaTaller" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="AceptaTerminos" />
+                    <label class="form-check-label fw-semibold" asp-for="AceptaTerminos"></label>
+                    <span asp-validation-for="AceptaTerminos" class="text-danger small"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-4 d-flex gap-3">
+            <button class="btn btn-success btn-lg px-4">
+                <i class="bi bi-check-circle"></i> Guardar
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-arrow-left"></i> Cancelar
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
