@@ -37,6 +37,6 @@ namespace PracticaSemana9.Models
         public string CodigoInterno { get; set; } = string.Empty;
 
         [Required]
-        public bool? Disponible { get; set; }
+        public bool Disponible { get; set; }
     }
 }

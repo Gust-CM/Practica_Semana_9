@@ -1,54 +1,55 @@
 ﻿@model IReadOnlyList<PracticaSemana9.Models.Inscripcion>
 @{
-    Layout = "~/Views/Shared/Layouts/_LayoutInscripciones.cshtml";
-    ViewData["Title"] = "Inscripciones";
+    ViewData["Title"] = "Inscripciones Registradas";
 }
 
-<div class="section-header">
-    <i class="bi bi-clipboard-check"></i> Inscripciones Registradas
-</div>
+<div class="header-card d-flex justify-content-between align-items-center">
+    <h4 class="mb-0"><i class="bi bi-people-fill"></i> Inscripciones Registradas</h4>
 
-<div class="mb-3">
-    <a asp-controller="Inscripcion" asp-action="Crear" class="btn btn-success">
+    <a asp-controller="Inscripcion" asp-action="Crear" class="btn btn-light fw-bold">
         <i class="bi bi-person-plus"></i> Nueva Inscripción
     </a>
 </div>
 
-<div class="card-custom">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Participante</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-                <th>Taller</th>
-                <th>Nivel</th>
-                <th>Fecha</th>
-                <th>Términos</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @if (Model.Any())
-            {
-                foreach (var i in Model)
-                {
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-success">
                     <tr>
-                        <td>@i.Nombre @i.Apellidos</td>
-                        <td>@i.Correo</td>
-                        <td>@i.Telefono</td>
-                        <td>@i.Taller</td>
-                        <td>@i.NivelExperiencia</td>
-                        <td>@i.FechaTaller?.ToString("yyyy-MM-dd")</td>
-                        <td>@(i.AceptaTerminos ? "Sí" : "No")</td>
+                        <th>Participante</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Taller</th>
+                        <th>Nivel</th>
+                        <th>Fecha</th>
+                        <th>Términos</th>
                     </tr>
-                }
-            }
-            else
-            {
-                <tr><td colspan="7" class="text-center text-muted">Sin registros</td></tr>
-            }
-
-        </tbody>
-    </table>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center text-muted">Sin registros</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var i in Model)
+                        {
+                            <tr>
+                                <td>@i.Nombre @i.Apellidos</td>
+                                <td>@i.Correo</td>
+                                <td>@i.Telefono</td>
+                                <td>@i.Taller</td>
+                                <td>@i.NivelExperiencia</td>
+                                <td>@i.FechaTaller?.ToString("yyyy-MM-dd")</td>
+                                <td>@(i.AceptaTerminos ? "Sí" : "No")</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
