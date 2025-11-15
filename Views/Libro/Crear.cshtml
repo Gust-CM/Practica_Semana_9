@@ -30,9 +30,13 @@
 
             <div class="col-md-4">
                 <label asp-for="Categoria" class="form-label fw-semibold"></label>
-                <select asp-for="Categoria" class="form-select form-select-lg"
-                        asp-items="Html.GetEnumSelectList<CategoriaLibro>()">
+                <select asp-for="Categoria" class="form-select form-select-lg">
                     <option value="">Seleccione una categoría…</option>
+                    <option>Programacion</option>
+                    <option>Redes</option>
+                    <option>Bases de Datos</option>
+                    <option>IA</option>
+                    <option>Otro</option>
                 </select>
                 <span asp-validation-for="Categoria" class="text-danger small"></span>
             </div>
@@ -58,18 +62,26 @@
 
             <div class="col-md-6 d-flex align-items-center mt-4">
                 <div class="form-check">
-                    <input class="form-check-input" asp-for="Disponible" />
+                    <input class="form-check-input" asp-for="Disponible" type="checkbox" />
                     <label class="form-check-label fw-semibold" asp-for="Disponible"></label>
                 </div>
             </div>
 
         </div>
 
-        <div class="col-md-3 d-flex align-items-center mt-4">
-            <div class="form-check">
-                <input class="form-check-input" asp-for="Disponible" type="checkbox" />
-                <label class="form-check-label" asp-for="Disponible"></label>
-            </div>
+        <!-- Botones -->
+        <div class="mt-4 d-flex justify-content-end gap-3">
+
+            <!-- Botón Guardar -->
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="bi bi-save"></i> Guardar Libro
+            </button>
+
+            <!-- Botón Cancelar -->
+            <a asp-action="Index" class="btn btn-secondary btn-lg">
+                <i class="bi bi-x-circle"></i> Cancelar
+            </a>
+
         </div>
 
     </form>
